@@ -1,7 +1,7 @@
 require "faster_csv"
 require "mechanize"
 
-agent = WWW::Mechanize.new
+agent = Mechanize.new
 page = agent.get("http://www.tepco.co.jp/nu/monitoring/index-j.html")
 page.links_with(:href => /.+\.pdf$/).each do |link|
 	pdf_file = Rails.root + "/public/data/" + File.basename(link.href)

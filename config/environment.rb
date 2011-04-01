@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
 	# config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
 	# config.gem "sqlite3-ruby", :lib => "sqlite3"
 	# config.gem "aws-s3", :lib => "aws/s3"
+	config.gem "mechanize", :version => "1.0.0"
 	config.gem "fastercsv", :version => "1.5.0"
 	config.gem "gnuplot", :version => "2.3.6"
 	config.gem "calendar_date_select", :version => "1.16.2"

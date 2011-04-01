@@ -2,7 +2,7 @@ h1. radiation_monitor
 
 A rails application to chart for radiation dose rate(Fukushima dai-ichi nuclear power plant accident)
 
-h2. Instrallation
+h2. Installation
 
 <pre>
 git clone git://github.com/muraoka17/radiation_monitor.git
