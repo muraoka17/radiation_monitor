@@ -1,0 +1,22 @@
+h1. radiation_monitor
+
+A rails application to chart for radiation dose rate(Fukushima dai-ichi nuclear power plant accident)
+
+h2. Instrallation
+
+<pre>
+git clone git://github.com/muraoka17/radiation_monitor.git
+cd radiation_monitor
+rake db:create
+rake db:migrate
+rake db:seed
+script/server -d
+
+# if you use gnuplot html5 terminal
+ln -s /path/to/gnuplot_javascript_dir public/gnuplot
+</pre>
+
+h2. Author
+
+MURAOKA Daisuke
+http://cyanogen.jp/

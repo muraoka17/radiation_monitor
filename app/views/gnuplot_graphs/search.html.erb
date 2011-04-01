@@ -1,0 +1,19 @@
+<%- content_for(:header) do -%>
+	<%= calendar_date_select_includes("default", :locale => "ja") %>
+  <%- CalendarDateSelect.format = (:iso_date) -%>
+<%- end -%>
+
+<h2>空間放射線量率グラフ検索(15分毎元データ取得自動更新)</h2>
+
+<% form_tag(:action => "index") do -%>
+	場所: <%= select_tag("location", options_from_collection_for_select(@locations, :location, :location)) %><br />
+	フォーマット: <%= select_tag("format", options_for_select([["PNG形式", "png"], ["SVG形式", "svg"], ["PDF形式", "pdf"], ["HTML5形式(文字化けあり)", "html"]])) %><br />
+	開始日時: <%= calendar_date_select_tag("start_date", nil, :popup => :force) %><br />
+	終了日時: <%= calendar_date_select_tag("end_date", nil, :popup => :force) %><br />
+	<%= submit_tag("決定") %>
+<% end -%>
+
+<h3>参照元データ</h3>
+<ul>
+<li><%= link_to("東京電力(http://www.tepco.co.jp/nu/monitoring/)", "http://www.tepco.co.jp/nu/monitoring/") %>
+</ul>

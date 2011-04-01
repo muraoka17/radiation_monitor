@@ -1,0 +1,10 @@
+batch/
+db/*.sqlite3
+db/schema.rb
+public/data/*
+public/images/calendar_date_select
+public/javascripts/calendar_date_select
+public/stylesheets/calendar_date_select
+log/*
+tmp/*
+vendor/gems/
