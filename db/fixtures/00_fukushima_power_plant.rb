@@ -4,7 +4,7 @@ require "mechanize"
 agent = Mechanize.new
 page = agent.get("http://www.tepco.co.jp/nu/monitoring/index-j.html")
 page.links_with(:href => /.+\.pdf$/).each do |link|
-	pdf_file = Rails.root + "/public/data/" + File.basename(link.href)
+	pdf_file = File.join(Rails.root, "/public/data/", File.basename(link.href))
 	unless File.exist?(pdf_file)
 		link.click.save(pdf_file)
 		print(pdf_file + " saved\n")
