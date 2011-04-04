@@ -60,7 +60,7 @@ page.links_with(:href => /.+\.pdf$/, :text => /^環境放射能水準調査結�
 								 when 36..39
 									 "四国"
 								 when 40..47
-									 "九州"
+									 "九州・沖縄"
 								 end
 			row[2..-2].each_with_index do |value, i|
 				records << {:location => location, :place => row[1], :measured_at => measured_ats[i], :gamma_ray => value}
