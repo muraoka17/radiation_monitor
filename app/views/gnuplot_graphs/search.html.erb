@@ -10,10 +10,12 @@
 	フォーマット: <%= select_tag("format", options_for_select([["PNG形式", "png"], ["SVG形式", "svg"], ["PDF形式", "pdf"], ["HTML5形式(文字化けあり)", "html"]])) %><br />
 	開始日時: <%= calendar_date_select_tag("start_date", nil, :popup => :force) %><br />
 	終了日時: <%= calendar_date_select_tag("end_date", nil, :popup => :force) %><br />
+	スケール: <%= check_box_tag("logscale") %>対数<br />
 	<%= submit_tag("決定") %>
 <% end -%>
 
 <h3>参照元データ</h3>
 <ul>
-<li><%= link_to("東京電力(http://www.tepco.co.jp/nu/monitoring/)", "http://www.tepco.co.jp/nu/monitoring/") %>
+	<li><%= link_to("東京電力 福島第一・第二原子力発電所モニタリングによる計測状況", "http://www.tepco.co.jp/nu/monitoring/") %></li>
+	<li><%= link_to("文部科学省 都道府県別環境放射能水準調査結果", "http://www.mext.go.jp/a_menu/saigaijohou/syousai/1303723.htm") %></li>
 </ul>

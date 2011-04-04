@@ -16,6 +16,7 @@ class GnuplotLineChart
 			else
 			end
 		end
+		@logscale = true if options[:logscale]
 
 		if options[:place]
 			places = [options[:place]]
@@ -52,9 +53,9 @@ class GnuplotLineChart
 
 				plot.title(@location)
 				plot.xlabel("日時")
-				plot.ylabel("γ線線量率(μSv/h)")
+				plot.ylabel("線量率(μSv/h)")
 				plot.xdata("time")
-				plot.logscale("y")
+				plot.logscale("y") if @logscale
 				#plot.xtics('("2011-03-25", "2011-03-26", "2011-03-27", "2011-03-28", "2011-03-29")')
 				#plot.xrange('["2011-03-25":"2011-03-29"]')
 				plot.format('x "%m/%d\n%H:%M"')

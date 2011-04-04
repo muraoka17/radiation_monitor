@@ -2,7 +2,7 @@ class GnuplotGraphsController < ApplicationController
 	def index
 		ENV["RB_GNUPLOT"] = "/usr/local/bin/gnuplot"
 
-		@gnuplot = GnuplotLineChart.new(:location => params[:location] || "福島第一原子力発電所", :start_date => params[:start_date], :end_date => params[:end_date])
+		@gnuplot = GnuplotLineChart.new(:location => params[:location] || "福島第一原子力発電所", :start_date => params[:start_date], :end_date => params[:end_date], :logscale => params[:logscale])
 
 		respond_to do |format|
 			format.html { render(:inline => "<%= @gnuplot.plot('html') %>", :layout => false) }
