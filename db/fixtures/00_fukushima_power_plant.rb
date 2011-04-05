@@ -39,7 +39,7 @@ page.links_with(:href => /.+\.pdf$/).each do |link|
 		## support 3/29～(first) format
 		if row[0] =~ /^(【別紙】)*(.+)可搬型モニタリングポストによる計測状況$/
 			location = $2
-			type = "post"
+			type = "tmp_post"
 			places = []
 			units = []
 			next
@@ -47,9 +47,16 @@ page.links_with(:href => /.+\.pdf$/).each do |link|
 
 		if row[1] == "仮設モニタリングポストによる定点計測状況"
 			location = row[0]
-			type = "post"
+			type = "tmp_post"
 			places = []
 			units = []
+			next
+		end
+
+		if row[0] =~ /^(.+) モニタリングポスト空間線量率\(μSv\/h\)$/
+			location = $1
+			type = "manual_post"
+			places = []
 			next
 		end
 
@@ -88,7 +95,7 @@ page.links_with(:href => /.+\.pdf$/).each do |link|
 
 				records << record
 			end
-		when "post"
+		when "tmp_post"
 			if row.size == 3
 				if places.empty?
 					places = row
@@ -115,6 +122,20 @@ page.links_with(:href => /.+\.pdf$/).each do |link|
 				end
 
 				[[location] * 3, places, [measured_at] * 3, gamma_rays].transpose.each do |rec|
+					records << {:location => rec[0], :place => rec[1], :measured_at => rec[2], :gamma_ray => rec[3]}
+				end
+			end
+		when "manual_post"
+			if row[0] == "測定日"
+				places = row[1..-1]
+				next
+			end
+
+			if row[0] =~ /^(\d+)\/(\d+)\/(\d+)$/
+				measured_at = DateTime.strptime(row[0] + " 14:00", "%Y/%m/%d %H:%M")
+				gamma_rays = row[2..-1]
+
+				[[location] * places.size, places, [measured_at] * places.size, gamma_rays].transpose.each do |rec|
 					records << {:location => rec[0], :place => rec[1], :measured_at => rec[2], :gamma_ray => rec[3]}
 				end
 			end
