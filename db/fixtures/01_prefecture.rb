@@ -3,7 +3,7 @@ require "mechanize"
 
 agent = Mechanize.new
 page = agent.get("http://www.mext.go.jp/a_menu/saigaijohou/syousai/1303723.htm")
-page.links_with(:href => /.+\.pdf$/, :text => /^環境放射能水準調査結果\(都道府県別\)/).each do |link|
+page.links_with(:href => /.+\.pdf$/, :text => /^環境放射能水準調査結果[\(（]都道府県別[\)）]/).each do |link|
 	pdf_file = File.join(Rails.root, "/public/data/", File.basename(link.href))
 	unless File.exist?(pdf_file)
 		link.click.save(pdf_file)
