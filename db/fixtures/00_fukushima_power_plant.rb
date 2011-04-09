@@ -55,6 +55,8 @@ page.links_with(:href => /.+\.pdf$/).each do |link|
 
 		if row[0] =~ /^(.+) モニタリングポスト空間線量率\(μSv\/h\)$/
 			location = $1
+			type = "auto_post"
+			places = []
 			next
 		end
 
